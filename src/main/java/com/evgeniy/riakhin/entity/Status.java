@@ -1,4 +1,4 @@
-package com.evgeniy.riakhin.domain;
+package com.evgeniy.riakhin.entity;
 
 public enum Status {
     IN_PROGRESS,

@@ -1,8 +1,8 @@
 package com.evgeniy.riakhin.service;
 
 import com.evgeniy.riakhin.dao.TaskDAO;
-import com.evgeniy.riakhin.domain.Status;
-import com.evgeniy.riakhin.domain.Task;
+import com.evgeniy.riakhin.entity.Status;
+import com.evgeniy.riakhin.entity.Task;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,13 +24,12 @@ public class TaskService {
         return taskDAO.getAllTasks();
     }
 
-    public Task createTask(String description, Status status) {
+    public void createTask(String description, Status status) {
         Task task = Task.builder()
                 .description(description)
                 .status(status)
                 .build();
         taskDAO.saveOrUpdate(task);
-        return task;
     }
 
     @Transactional

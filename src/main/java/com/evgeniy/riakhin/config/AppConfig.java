@@ -22,7 +22,7 @@ public class AppConfig {
     public LocalSessionFactoryBean sessionFactory() {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(getDataSource());
-        sessionFactory.setPackagesToScan("com.evgeniy.riakhin");
+        sessionFactory.setPackagesToScan("com.evgeniy.riakhin.entity");
         sessionFactory.setHibernateProperties(getHibernateProperties());
         return sessionFactory;
     }
@@ -36,13 +36,13 @@ public class AppConfig {
 
     @Bean
     public DataSource getDataSource() {
-        try (HikariDataSource dataSource = new HikariDataSource()) {
+        HikariDataSource dataSource = new HikariDataSource();
             dataSource.setDriverClassName("com.mysql.jdbc.Driver");
             dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/todo");
             dataSource.setUsername("root");
             dataSource.setPassword("1234");
             return dataSource;
-        }
+
     }
 
     @Bean

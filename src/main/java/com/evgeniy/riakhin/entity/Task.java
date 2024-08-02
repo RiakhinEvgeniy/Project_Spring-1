@@ -1,4 +1,4 @@
-package com.evgeniy.riakhin.domain;
+package com.evgeniy.riakhin.entity;
 
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;

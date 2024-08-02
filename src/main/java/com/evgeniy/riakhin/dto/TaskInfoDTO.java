@@ -1,6 +1,6 @@
-package com.evgeniy.riakhin;
+package com.evgeniy.riakhin.dto;
 
-import com.evgeniy.riakhin.domain.Status;
+import com.evgeniy.riakhin.entity.Status;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
