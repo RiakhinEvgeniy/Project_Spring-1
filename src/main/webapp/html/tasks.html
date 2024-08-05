@@ -3,8 +3,29 @@
 <head>
     <meta charset="UTF-8">
     <title>Tasks</title>
+    <style>
+        td, th {
+            font-size: large;
+            border: solid;
+            color: black;
+        }
+
+        .active_page {
+            color: rgba(255, 99, 71, 0.99);
+        }
+
+        .button_page {
+            color: white;
+            border: 2px solid black;
+            margin: 5px;
+            padding: 20px;
+            font-size: small;
+        }
+    </style>
+    <!--    <link th:href="webapp/style/main.css" rel="stylesheet">-->
 </head>
 <body>
+
 <table>
     <thead>
     <tr>
@@ -18,8 +39,20 @@
         <td th:text="${task.id}"/>
         <td th:text="${task.description}" th:id="'description_' + ${task.id}"/>
         <td th:text="${task.status}" th:id="'status_' + ${task.id}"/>
+        <td>
+            <button th:id="'edit_' + ${task.id}" th:onclick="'edit_task(' + ${task.id} + ')'">Edit</button>
+        </td>
+        <td>
+            <button th:id="'delete_' + ${task.id}" th:onclick="'delete_task(' + ${task.id} + ')'">Delete</button>
+        </td>
     </tr>
     </tbody>
 </table>
+<h2>
+    <button th:each="pageNumber : ${page_numbers}" th:class="button_page">
+        <a th:href="@{/(page=${pageNumber}, limit=10)}" th:text="${pageNumber}"
+           th:classappend="${pageNumber == current_page? 'active_page' : ''}"></a>
+    </button>
+</h2>
 </body>
 </html>

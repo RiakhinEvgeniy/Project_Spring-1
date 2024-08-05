@@ -37,7 +37,7 @@ public class AppConfig {
     @Bean
     public DataSource getDataSource() {
         HikariDataSource dataSource = new HikariDataSource();
-            dataSource.setDriverClassName("com.mysql.jdbc.Driver");
+            dataSource.setDriverClassName("com.mysql.cj.jdbc.Driver");
             dataSource.setJdbcUrl("jdbc:mysql://localhost:3306/todo");
             dataSource.setUsername("root");
             dataSource.setPassword("1234");
