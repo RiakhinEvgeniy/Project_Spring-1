@@ -23,7 +23,7 @@ public class TaskController {
         this.taskService = taskService;
     }
 
-    @GetMapping("/")
+    @RequestMapping(value = "/", method = RequestMethod.GET)
     public String getTasks(Model model,
                            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                            @RequestParam(value = "limit", required = false, defaultValue = "10") int limit) {
@@ -39,7 +39,7 @@ public class TaskController {
     }
 
     @PostMapping("/{id}")
-    public String editTask(@PathVariable Integer id, Model model, @RequestBody TaskInfoDTO infoDTO) {
+    public String editTask(@PathVariable("id") Integer id, Model model, @RequestBody TaskInfoDTO infoDTO) {
         if (isNull(id) || id <= 0) {
             throw new IllegalArgumentException("Invalid task id");
         }
@@ -54,7 +54,7 @@ public class TaskController {
     }
 
     @DeleteMapping("/{id}")
-    public String deleteTask(Model model, @PathVariable Integer id) {
+    public String deleteTask(Model model, @PathVariable(name = "id") Integer id) {
         if (isNull(id) || id <= 0) {
             throw new IllegalArgumentException("Invalid task id");
         }
