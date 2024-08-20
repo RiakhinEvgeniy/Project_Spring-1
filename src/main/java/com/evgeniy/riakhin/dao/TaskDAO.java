@@ -1,17 +1,16 @@
 package com.evgeniy.riakhin.dao;
 
 import com.evgeniy.riakhin.entity.Task;
-import lombok.RequiredArgsConstructor;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 import org.hibernate.query.Query;
-import org.springframework.stereotype.Controller;
+import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Propagation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-@Controller
+@Repository
 //@RequiredArgsConstructor
 public class TaskDAO {
 

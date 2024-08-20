@@ -37,9 +37,10 @@ function edit_task(task_id) {
 }
 
 function getDropdownStatusHTML(task_id) {
-    let status_id = "#select_status_" + task_id;
+    let status_id = "select_status_" + task_id;
+    //todo watch this label
     return "<label for='status'></label>"
-        + "<select id=" + status_id + " name='status'>"
+        + "<select id="+ status_id +" name='status'>"
         + "<option value='IN_PROGRESS'>IN_PROGRESS</option>"
         + "<option value='DONE'>DONE</option>"
         + "<option value='PAUSED'>PAUSED</option>"
@@ -62,5 +63,22 @@ function update_task(task_id) {
 
     setTimeout(() => {
         document.location.reload();
+    }, 300);
+}
+
+function add_task() {
+    let value_description = $("#description_new").val();
+    let value_status = $("#status_new").val();
+
+    $.ajax({
+        url: "/",
+        type: 'POST',
+        dataType: 'json',
+        contentType: 'application/json; charset=UTF-8',
+        async: false,
+        data: JSON.stringify({"description": value_description, "status": value_status})
+    });
+
+    setTimeout(() => {document.location.reload();
     }, 300);
 }

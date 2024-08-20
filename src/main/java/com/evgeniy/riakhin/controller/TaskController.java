@@ -8,7 +8,6 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.stream.Collectors;
 import java.util.stream.IntStream;
 
 import static java.util.Objects.isNull;
@@ -28,6 +27,7 @@ public class TaskController {
                            @RequestParam(value = "page", required = false, defaultValue = "1") int page,
                            @RequestParam(value = "limit", required = false, defaultValue = "10") int limit) {
         List<Task> tasks = taskService.getOffsetLimitTasks((page - 1) * limit, limit);
+
         model.addAttribute("tasks", tasks);
         model.addAttribute("current_page", page);
         int totalPages = (int)Math.ceil(1.0 * taskService.getAllTasksCount() / limit);
@@ -39,17 +39,17 @@ public class TaskController {
     }
 
     @PostMapping("/{id}")
-    public String editTask(@PathVariable("id") Integer id, Model model, @RequestBody TaskInfoDTO infoDTO) {
+    public String editTask(@PathVariable("id") Integer id, Model model, @RequestBody TaskInfoDTO info) {
         if (isNull(id) || id <= 0) {
             throw new IllegalArgumentException("Invalid task id");
         }
-        Task task = taskService.editTask(id, infoDTO.getDescription(), infoDTO.getStatus());
+        Task task = taskService.editTask(id, info.getDescription(), info.getStatus());
         return getTasks(model, 1, 10);
     }
 
     @PostMapping("/")
-    public String addTask(Model model, @RequestBody TaskInfoDTO infoDTO) {
-        taskService.createTask(infoDTO.getDescription(), infoDTO.getStatus());
+    public String addTask(Model model, @RequestBody TaskInfoDTO info) {
+        taskService.createTask(info.getDescription(), info.getStatus());
         return getTasks(model, 1, 10);
     }
 

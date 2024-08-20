@@ -34,6 +34,8 @@ public class TaskService {
 
     @Transactional
     public Task editTask(int id, String description, Status status) {
+        System.out.println("DESCRIPTION:" + description);
+        System.out.println("STATUS:" + status);
         Task task = taskDAO.getByIdTask(id);
         if (isNull(task)) {
             throw new RuntimeException("Task not found in DB");
