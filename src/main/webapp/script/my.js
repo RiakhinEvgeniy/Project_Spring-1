@@ -38,7 +38,6 @@ function edit_task(task_id) {
 
 function getDropdownStatusHTML(task_id) {
     let status_id = "select_status_" + task_id;
-    //todo watch this label
     return "<label for='status'></label>"
         + "<select id="+ status_id +" name='status'>"
         + "<option value='IN_PROGRESS'>IN_PROGRESS</option>"
